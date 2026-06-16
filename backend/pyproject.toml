@@ -1,0 +1,9 @@
+[project]
+name = "ai-job-reel-backend"
+version = "1.0.0"
+description = "AI Job Reel Generation System — Backend"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"

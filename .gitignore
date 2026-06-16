@@ -1,0 +1,37 @@
+# AI Video Generator
+
+## Byte-size
+node_modules/
+.next/
+out/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Storage
+backend/storage/
+!backend/storage/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
