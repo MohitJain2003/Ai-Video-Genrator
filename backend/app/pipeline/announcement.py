@@ -296,9 +296,9 @@ WrapStyle: 2
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: TopCardBg,Arial,10,&H00FFFFFF,&H00000000,&H00E0E0E0,&H00FFFFFF,0,0,0,0,100,100,0,0,1,3,0,5,0,0,0,1
+Style: TopCardBg,Arial,10,&H00FFFFFF,&H00000000,&H00E0E0E0,&H00FFFFFF,0,0,0,0,100,100,0,0,1,3,0,7,0,0,0,1
 Style: TopCardText,Arial,34,&H00000000,&H00000000,&H00FFFFFF,&H00FFFFFF,1,0,0,0,100,100,0,0,1,0,0,5,0,0,0,1
-Style: HeadlineBg,Arial,10,&H00000000,&H00000000,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,0,0,5,0,0,0,1
+Style: HeadlineBg,Arial,10,&H00000000,&H00000000,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,0,0,7,0,0,0,1
 Style: HeadlineText,Arial Black,38,&H00FFFFFF,&H00000000,&H00000000,&H00000000,1,0,0,0,100,100,0,0,1,0,0,5,0,0,0,1
 Style: InfoCard,Arial Black,44,&H00FFFFFF,&H00000000,&H00000000,&H00000000,1,0,0,0,100,100,0,0,3,12,0,5,60,60,0,1
 Style: BottomCTA,Arial Black,46,&H00000000,&H00000000,&H00FFFFFF,&HFFFFFFFF,1,0,0,0,100,100,0,0,3,12,0,2,60,60,180,1
@@ -332,12 +332,12 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     top_card_text = "\\N".join(top_card_lines)
 
     # 1. Top Card background drawing & text dialogue (visible throughout the entire video)
-    ass_content += f"Dialogue: 1,0:00:00.00,{format_time(duration)},TopCardBg,,0,0,0,,{{\\pos(540,380)\\p1}}m -430 -270 l 430 -270 b 452 -270 470 -252 470 -230 l 470 230 b 470 252 452 270 430 270 l -430 270 b -452 270 -470 252 -470 230 l -470 -230 b -470 -252 -452 -270 -430 -270{{\\p0}}\n"
+    ass_content += f"Dialogue: 1,0:00:00.00,{format_time(duration)},TopCardBg,,0,0,0,,{{\\pos(0,0)\\p1}}m 130 110 l 950 110 b 972 110 990 132 990 150 l 990 610 b 990 632 968 650 950 650 l 130 650 b 108 650 90 628 90 610 l 90 150 b 90 128 112 110 130 110{{\\p0}}\n"
     ass_content += f"Dialogue: 2,0:00:00.00,{format_time(duration)},TopCardText,,0,0,0,,{{\\pos(540,380)}}{top_card_text}\n"
 
     # 2. Headline background drawing & text dialogue (visible throughout the entire video)
     headline_text = f"🚨 {company.upper()} is Hiring! 🚨\\N🔥 Off Campus Drive 2026 🔥"
-    ass_content += f"Dialogue: 1,0:00:00.00,{format_time(duration)},HeadlineBg,,0,0,0,,{{\\pos(540,800)\\p1}}m -450 -90 l 450 -90 b 467 -90 480 -77 480 -60 l 480 60 b 480 77 467 90 450 90 l -450 90 b -467 90 -480 77 -480 60 l -480 -60 b -480 -77 -467 -90 -450 -90{{\\p0}}\n"
+    ass_content += f"Dialogue: 1,0:00:00.00,{format_time(duration)},HeadlineBg,,0,0,0,,{{\\pos(0,0)\\p1}}m 90 710 l 990 710 b 1007 710 1020 727 1020 740 l 1020 860 b 1020 877 1003 890 990 890 l 90 890 b 73 890 60 873 60 860 l 60 740 b 60 723 77 710 90 710{{\\p0}}\n"
     ass_content += f"Dialogue: 2,0:00:00.00,{format_time(duration)},HeadlineText,,0,0,0,,{{\\pos(540,800)}}{headline_text}\n"
 
     # 3. Info Cards (sequential animation)
