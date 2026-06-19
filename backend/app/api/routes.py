@@ -16,6 +16,7 @@ from app.db.database import get_session, get_session_dep
 from app.models.schemas import (
     CreateJobFromURL,
     CreateJobManual,
+    CreateJobAnnouncement,
     UpdateJobData,
     UpdateScript,
     SelectHook,
@@ -212,6 +213,24 @@ async def create_job_manual(
     # Queue the pipeline
     queue_job_task(job.id, background_tasks)
     logger.info(f"Job {job.id} (manual) queued for processing")
+
+    return JobResponse.model_validate(job)
+
+
+@router.post("/jobs/announcement", response_model=JobResponse, status_code=201)
+async def create_job_announcement(
+    data: CreateJobAnnouncement,
+    background_tasks: BackgroundTasks,
+    service: JobService = Depends(_get_service),
+):
+    """Create a new job announcement reel job."""
+    job = service.create_job_announcement(
+        job_data=data.job_data.model_dump(),
+    )
+
+    # Queue the pipeline
+    queue_job_task(job.id, background_tasks)
+    logger.info(f"Job {job.id} (announcement) queued for processing")
 
     return JobResponse.model_validate(job)
 

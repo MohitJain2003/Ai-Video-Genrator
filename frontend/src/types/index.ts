@@ -29,7 +29,8 @@ export type InputType =
   | "upload"
   | "article_url"
   | "pdf"
-  | "manual";
+  | "manual"
+  | "announcement";
 
 export interface JobData {
   company_name: string | null;
@@ -44,6 +45,9 @@ export interface JobData {
   selection_process: string[];
   apply_link: string | null;
   important_notes: string[];
+  work_mode?: string | null;
+  cta_text?: string | null;
+  bgm_name?: string | null;
 }
 
 export interface HookVariant {

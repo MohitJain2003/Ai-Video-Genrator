@@ -50,6 +50,13 @@ export default function RootLayout({
                 Create Reel
               </a>
               <a
+                href="/create-announcement"
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-hover)] transition-all duration-200"
+              >
+                <span className="text-lg">📣</span>
+                Announcement Reel
+              </a>
+              <a
                 href="/jobs"
                 className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-hover)] transition-all duration-200"
               >
@@ -80,15 +87,19 @@ export default function RootLayout({
                   ReelGen AI
                 </span>
               </div>
-              <nav className="flex gap-2">
-                <a href="/" className="px-3 py-1.5 text-xs rounded-lg bg-[var(--bg-tertiary)] text-[var(--text-secondary)]">
+              <nav className="flex gap-2 items-center">
+                <a href="/" className="px-2.5 py-1 text-xs rounded bg-[var(--bg-tertiary)] text-[var(--text-secondary)]">
                   Home
                 </a>
-                <a href="/create" className="px-3 py-1.5 text-xs rounded-lg text-white"
+                <a href="/create" className="px-2.5 py-1 text-xs rounded text-white"
                   style={{ background: "var(--gradient-1)" }}>
-                  + Create
+                  + Reel
                 </a>
-                <a href="/jobs" className="px-3 py-1.5 text-xs rounded-lg bg-[var(--bg-tertiary)] text-[var(--text-secondary)]">
+                <a href="/create-announcement" className="px-2.5 py-1 text-xs rounded text-white"
+                  style={{ background: "var(--gradient-1)" }}>
+                  + Promo
+                </a>
+                <a href="/jobs" className="px-2.5 py-1 text-xs rounded bg-[var(--bg-tertiary)] text-[var(--text-secondary)]">
                   History
                 </a>
               </nav>

@@ -157,7 +157,10 @@ export default function JobDetailPage() {
 
       {/* Content Tabs */}
       <div className="flex gap-1 bg-[var(--bg-secondary)] p-1 rounded-xl overflow-x-auto">
-        {(["overview", "hooks", "script", "scenes", "quality"] as const).map((tab) => (
+        {(job.input_type === "announcement"
+          ? (["overview", "scenes"] as const)
+          : (["overview", "hooks", "script", "scenes", "quality"] as const)
+        ).map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}

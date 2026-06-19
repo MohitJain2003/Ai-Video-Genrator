@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any, Optional
 
 from app.config import get_settings, LLMProvider
-from app.models.job import Job, JobStatus
+from app.models.job import Job, JobStatus, InputType
 from app.providers.llm.openai_llm import OpenAILLMProvider
 from app.providers.llm.claude import ClaudeLLMProvider
 from app.providers.llm.mock import MockLLMProvider
@@ -32,6 +32,7 @@ from app.pipeline.m09_visual_assets import acquire_visuals
 from app.pipeline.m10_video_gen import generate_scene_videos
 from app.pipeline.m11_assembly import assemble_final_reel
 from app.pipeline.m12_quality import evaluate_quality, should_regenerate
+from app.pipeline.announcement import run_announcement_pipeline
 
 logger = logging.getLogger(__name__)
 
@@ -207,6 +208,9 @@ async def run_pipeline(
     Returns:
         Updated Job with results or error.
     """
+    if job.input_type == InputType.ANNOUNCEMENT:
+        return await run_announcement_pipeline(job, session, on_status)
+
     settings = get_settings()
     llm = _get_llm(job.llm_provider)
 

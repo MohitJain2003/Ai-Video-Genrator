@@ -118,6 +118,26 @@ class JobService:
         logger.info(f"Created job {job.id} from manual input")
         return job
 
+    def create_job_announcement(
+        self,
+        job_data: dict[str, Any],
+    ) -> Job:
+        """Create a new job announcement reel job."""
+        job = Job(
+            input_type=InputType.ANNOUNCEMENT,
+            input_value="announcement",
+            job_data=job_data,
+            llm_provider=self.settings.default_llm_provider.value,
+            voice_provider="none",
+            video_provider=self.settings.default_video_provider.value,
+            voice_language="none",
+        )
+        self.session.add(job)
+        self.session.commit()
+        self.session.refresh(job)
+        logger.info(f"Created announcement job {job.id}")
+        return job
+
     def get_job(self, job_id: str) -> Job | None:
         """Get a job by ID."""
         return self.session.get(Job, job_id)

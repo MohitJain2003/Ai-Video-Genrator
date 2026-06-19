@@ -113,3 +113,51 @@ async def test_full_pipeline_mock_manual(session: Session):
     assert Path(updated_job.voice_path).exists()
     assert Path(updated_job.captions_path).exists()
     assert Path(updated_job.output_path).exists()
+
+
+@pytest.mark.asyncio
+async def test_announcement_pipeline_mock(session: Session):
+    """Test the end-to-end announcement pipeline using mock background video generation."""
+    settings = get_settings()
+    settings.ensure_storage_dirs()
+
+    # Clear API keys to force mock mode
+    settings.pexels_api_key = ""
+
+    # Create an announcement job
+    job = Job(
+        input_type=InputType.ANNOUNCEMENT,
+        input_value="announcement",
+        job_data={
+            "company_name": "HSBC",
+            "job_role": "Trainee - Data Analyst",
+            "salary": "₹10.2 Lakhs - ₹13.4 Lakhs",
+            "eligibility": "Bachelor's / Master's degree",
+            "batch": "2024 / 2025",
+            "experience": "Fresh Graduates",
+            "location": "Bangalore / Pune",
+            "work_mode": "Hybrid",
+            "last_date": "Apply Soon",
+            "cta_text": "Comment 'LINK' to Apply",
+            "bgm_name": "chill_lofi",
+        },
+        llm_provider="openai",
+        voice_provider="none",
+        video_provider="pexels",
+        voice_language="none",
+    )
+    session.add(job)
+    session.commit()
+    session.refresh(job)
+
+    assert job.status == JobStatus.PENDING
+
+    # Run the pipeline
+    updated_job = await run_pipeline(job, session)
+
+    # Assertions
+    assert updated_job.status == JobStatus.COMPLETED
+    assert updated_job.output_path is not None
+    assert Path(updated_job.output_path).exists()
+    assert updated_job.captions_path is not None
+    assert Path(updated_job.captions_path).exists()

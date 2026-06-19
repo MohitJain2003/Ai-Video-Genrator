@@ -49,6 +49,26 @@ class CreateJobManual(BaseModel):
     voice_language: Optional[str] = None
 
 
+class AnnouncementJobInput(BaseModel):
+    """Job Announcement input fields."""
+    company_name: str = Field(..., min_length=1, max_length=200)
+    job_role: str = Field(..., min_length=1, max_length=200)
+    salary: Optional[str] = None
+    eligibility: Optional[str] = None
+    batch: Optional[str] = None
+    experience: Optional[str] = None
+    location: Optional[str] = None
+    work_mode: Optional[str] = None
+    last_date: Optional[str] = None
+    cta_text: Optional[str] = None
+    bgm_name: Optional[str] = None
+
+
+class CreateJobAnnouncement(BaseModel):
+    """Request schema for creating a job announcement reel."""
+    job_data: AnnouncementJobInput
+
+
 class UpdateJobData(BaseModel):
     """Edit extracted job data before generation."""
     company_name: Optional[str] = None

@@ -95,6 +95,17 @@ export async function createJobManual(
   });
 }
 
+export async function createJobAnnouncement(
+  jobData: Record<string, unknown>
+): Promise<Job> {
+  return fetchJSON<Job>("/api/v1/jobs/announcement", {
+    method: "POST",
+    body: JSON.stringify({
+      job_data: jobData,
+    }),
+  });
+}
+
 export interface VoiceInfo {
   id: string;
   name: string;

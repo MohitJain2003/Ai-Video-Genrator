@@ -43,6 +43,7 @@ class InputType(str, Enum):
     ARTICLE_URL = "article_url"
     PDF = "pdf"
     MANUAL = "manual"
+    ANNOUNCEMENT = "announcement"
 
 
 # ── Helper ───────────────────────────────────────────────────────
