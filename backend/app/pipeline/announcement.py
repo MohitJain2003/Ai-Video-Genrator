@@ -296,8 +296,10 @@ WrapStyle: 2
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: TopCard,Arial,34,&H00000000,&H00000000,&H00FFFFFF,&HFFFFFFFF,1,0,0,0,100,100,0,0,3,15,0,8,60,60,120,1
-Style: Headline,Arial Black,42,&H00FFFFFF,&H00000000,&H00000000,&H00000000,1,0,0,0,100,100,0,0,3,8,0,8,60,60,700,1
+Style: TopCardBg,Arial,10,&H00FFFFFF,&H00000000,&H00E0E0E0,&H00FFFFFF,0,0,0,0,100,100,0,0,1,3,0,5,0,0,0,1
+Style: TopCardText,Arial,34,&H00000000,&H00000000,&H00FFFFFF,&H00FFFFFF,1,0,0,0,100,100,0,0,1,0,0,5,0,0,0,1
+Style: HeadlineBg,Arial,10,&H00000000,&H00000000,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,0,0,5,0,0,0,1
+Style: HeadlineText,Arial Black,38,&H00FFFFFF,&H00000000,&H00000000,&H00000000,1,0,0,0,100,100,0,0,1,0,0,5,0,0,0,1
 Style: InfoCard,Arial Black,44,&H00FFFFFF,&H00000000,&H00000000,&H00000000,1,0,0,0,100,100,0,0,3,12,0,5,60,60,0,1
 Style: BottomCTA,Arial Black,46,&H00000000,&H00000000,&H00FFFFFF,&HFFFFFFFF,1,0,0,0,100,100,0,0,3,12,0,2,60,60,180,1
 
@@ -329,12 +331,14 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     top_card_lines.append(f"{{\\fs32\\c&H000000FF&\\b1}}[ APPLY NOW ]      ○   ○   ○")
     top_card_text = "\\N".join(top_card_lines)
 
-    # 1. Top Card dialogue (visible throughout the entire video)
-    ass_content += f"Dialogue: 0,0:00:00.00,{format_time(duration)},TopCard,,0,0,0,,{top_card_text}\n"
+    # 1. Top Card background drawing & text dialogue (visible throughout the entire video)
+    ass_content += f"Dialogue: 1,0:00:00.00,{format_time(duration)},TopCardBg,,0,0,0,,{{\\pos(540,360)\\p1}}m -440 -230 l 440 -230 l 440 230 l -440 230{{\\p0}}\n"
+    ass_content += f"Dialogue: 2,0:00:00.00,{format_time(duration)},TopCardText,,0,0,0,,{{\\pos(540,360)}}{top_card_text}\n"
 
-    # 2. Headline dialogue (visible throughout the entire video)
+    # 2. Headline background drawing & text dialogue (visible throughout the entire video)
     headline_text = f"🚨 {company.upper()} is Hiring! 🚨\\N🔥 Off Campus Drive 2026 🔥"
-    ass_content += f"Dialogue: 0,0:00:00.00,{format_time(duration)},Headline,,0,0,0,,{headline_text}\n"
+    ass_content += f"Dialogue: 1,0:00:00.00,{format_time(duration)},HeadlineBg,,0,0,0,,{{\\pos(540,750)\\p1}}m -460 -80 l 460 -80 l 460 80 l -460 80{{\\p0}}\n"
+    ass_content += f"Dialogue: 2,0:00:00.00,{format_time(duration)},HeadlineText,,0,0,0,,{{\\pos(540,750)}}{headline_text}\n"
 
     # 3. Info Cards (sequential animation)
     # Collect non-empty details
@@ -379,7 +383,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
             )
 
     # 4. Final Big CTA Card in the center (visible from 16.0s to 20.0s)
-    final_cta_main = f"{{\\c&H0000FFFF&}}👉 FOLLOW FOR DAILY JOB UPDATES! 👈\\N\\N{{\\c&H00FFFFFF&}}Comment \"LINK\" to apply"
+    final_cta_main = f"👉 {{\\c&H0000FFFF&}}Follow{{\\r}} & Comment {{\\c&H0000FFFF&}}\"LINK\"{{\\r}} to Apply! 👈"
     ass_content += (
         f"Dialogue: 0,{format_time(active_period)},{format_time(duration)},InfoCard,,0,0,0,,"
         f"{{\\move(540,1230,540,1160,0,450)\\fad(400,400)}}{final_cta_main}\n"
