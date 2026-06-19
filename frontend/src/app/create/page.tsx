@@ -292,14 +292,19 @@ export default function CreateReelPage() {
 
       {/* Settings */}
       <div className="glass rounded-2xl p-6 md:p-8">
-        <h3 className="text-sm font-semibold text-[var(--text-secondary)] mb-4">⚙️ Generation Settings</h3>
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
-          <div>
-            <label className="block text-xs text-[var(--text-muted)] mb-1.5">LLM Provider (Script)</label>
+        <h3 className="text-sm font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-6 border-b border-[var(--border)] pb-3">
+          ⚙️ Generation Settings
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* LLM Provider */}
+          <div className="bg-[var(--bg-tertiary)]/30 border border-[var(--border)] rounded-xl p-5 hover:border-[var(--text-muted)] transition-colors duration-200">
+            <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-2 uppercase tracking-wider flex items-center gap-1.5">
+              <span>🤖</span> LLM Provider (Script)
+            </label>
             <select
               value={llmProvider}
               onChange={(e) => setLlmProvider(e.target.value)}
-              className="w-full bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-lg px-3 py-2.5 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)]"
+              className="w-full bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-lg px-3 py-2.5 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-colors"
             >
               <option value="openai">OpenAI (GPT-4o)</option>
               <option value="claude">Anthropic Claude</option>
@@ -307,26 +312,40 @@ export default function CreateReelPage() {
               <option value="sambanova">SambaNova (Llama 3.3)</option>
               <option value="cerebras">Cerebras (Llama 3.1)</option>
             </select>
+            <p className="text-[10px] text-[var(--text-muted)] mt-2">
+              Analyzes job source to write script details and timeline hooks.
+            </p>
           </div>
-          <div>
-            <label className="block text-xs text-[var(--text-muted)] mb-1.5">Voice Provider</label>
+
+          {/* Voice Provider */}
+          <div className="bg-[var(--bg-tertiary)]/30 border border-[var(--border)] rounded-xl p-5 hover:border-[var(--text-muted)] transition-colors duration-200">
+            <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-2 uppercase tracking-wider flex items-center gap-1.5">
+              <span>🗣️</span> Voice Provider
+            </label>
             <select
               value={voiceProvider}
               onChange={(e) => setVoiceProvider(e.target.value)}
-              className="w-full bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-lg px-3 py-2.5 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)]"
+              className="w-full bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-lg px-3 py-2.5 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-colors"
             >
               <option value="openai">OpenAI TTS</option>
               <option value="elevenlabs">ElevenLabs</option>
               <option value="cartesia">Cartesia</option>
             </select>
+            <p className="text-[10px] text-[var(--text-muted)] mt-2">
+              Select AI voice engine to synthesize narration files.
+            </p>
           </div>
-          <div>
-            <label className="block text-xs text-[var(--text-muted)] mb-1.5">Voice Select</label>
+
+          {/* Voice Select */}
+          <div className="bg-[var(--bg-tertiary)]/30 border border-[var(--border)] rounded-xl p-5 hover:border-[var(--text-muted)] transition-colors duration-200">
+            <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-2 uppercase tracking-wider flex items-center gap-1.5">
+              <span>🎙️</span> Voice Speaker
+            </label>
             <select
               value={voiceId}
               onChange={(e) => setVoiceId(e.target.value)}
               disabled={loadingVoices}
-              className="w-full bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-lg px-3 py-2.5 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] disabled:opacity-50"
+              className="w-full bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-lg px-3 py-2.5 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-colors disabled:opacity-50"
             >
               {loadingVoices ? (
                 <option value="">Loading voices...</option>
@@ -340,31 +359,48 @@ export default function CreateReelPage() {
                 <option value="">Default Voice</option>
               )}
             </select>
+            <p className="text-[10px] text-[var(--text-muted)] mt-2">
+              Choose character speaker tones and gender models.
+            </p>
           </div>
-          <div>
-            <label className="block text-xs text-[var(--text-muted)] mb-1.5">Video Provider</label>
+
+          {/* Video Provider */}
+          <div className="bg-[var(--bg-tertiary)]/30 border border-[var(--border)] rounded-xl p-5 hover:border-[var(--text-muted)] transition-colors duration-200">
+            <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-2 uppercase tracking-wider flex items-center gap-1.5">
+              <span>🎬</span> Video Provider
+            </label>
             <select
               value={videoProvider}
               onChange={(e) => setVideoProvider(e.target.value)}
-              className="w-full bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-lg px-3 py-2.5 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)]"
+              className="w-full bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-lg px-3 py-2.5 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-colors"
             >
               <option value="pexels">Pexels (Stock Video)</option>
               <option value="veo">Google Veo (AI Video)</option>
               <option value="kling">Kling AI (AI Video)</option>
               <option value="runway">Runway ML (AI Video)</option>
             </select>
+            <p className="text-[10px] text-[var(--text-muted)] mt-2">
+              Background media provider: stock search or AI generation.
+            </p>
           </div>
-          <div>
-            <label className="block text-xs text-[var(--text-muted)] mb-1.5">Language</label>
+
+          {/* Language */}
+          <div className="bg-[var(--bg-tertiary)]/30 border border-[var(--border)] rounded-xl p-5 hover:border-[var(--text-muted)] transition-colors duration-200">
+            <label className="block text-xs font-semibold text-[var(--text-secondary)] mb-2 uppercase tracking-wider flex items-center gap-1.5">
+              <span>🌐</span> Language Style
+            </label>
             <select
               value={voiceLanguage}
               onChange={(e) => setVoiceLanguage(e.target.value)}
-              className="w-full bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-lg px-3 py-2.5 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)]"
+              className="w-full bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-lg px-3 py-2.5 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-colors"
             >
               <option value="hinglish">Hinglish</option>
               <option value="hi">Hindi</option>
               <option value="en">English</option>
             </select>
+            <p className="text-[10px] text-[var(--text-muted)] mt-2">
+              Target dialect style for narration script translation.
+            </p>
           </div>
         </div>
       </div>

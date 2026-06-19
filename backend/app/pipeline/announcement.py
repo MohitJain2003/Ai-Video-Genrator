@@ -332,13 +332,13 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     top_card_text = "\\N".join(top_card_lines)
 
     # 1. Top Card background drawing & text dialogue (visible throughout the entire video)
-    ass_content += f"Dialogue: 1,0:00:00.00,{format_time(duration)},TopCardBg,,0,0,0,,{{\\pos(540,360)\\p1}}m -440 -230 l 440 -230 l 440 230 l -440 230{{\\p0}}\n"
-    ass_content += f"Dialogue: 2,0:00:00.00,{format_time(duration)},TopCardText,,0,0,0,,{{\\pos(540,360)}}{top_card_text}\n"
+    ass_content += f"Dialogue: 1,0:00:00.00,{format_time(duration)},TopCardBg,,0,0,0,,{{\\pos(540,380)\\p1}}m -430 -270 l 430 -270 b 452 -270 470 -252 470 -230 l 470 230 b 470 252 452 270 430 270 l -430 270 b -452 270 -470 252 -470 230 l -470 -230 b -470 -252 -452 -270 -430 -270{{\\p0}}\n"
+    ass_content += f"Dialogue: 2,0:00:00.00,{format_time(duration)},TopCardText,,0,0,0,,{{\\pos(540,380)}}{top_card_text}\n"
 
     # 2. Headline background drawing & text dialogue (visible throughout the entire video)
     headline_text = f"🚨 {company.upper()} is Hiring! 🚨\\N🔥 Off Campus Drive 2026 🔥"
-    ass_content += f"Dialogue: 1,0:00:00.00,{format_time(duration)},HeadlineBg,,0,0,0,,{{\\pos(540,750)\\p1}}m -460 -80 l 460 -80 l 460 80 l -460 80{{\\p0}}\n"
-    ass_content += f"Dialogue: 2,0:00:00.00,{format_time(duration)},HeadlineText,,0,0,0,,{{\\pos(540,750)}}{headline_text}\n"
+    ass_content += f"Dialogue: 1,0:00:00.00,{format_time(duration)},HeadlineBg,,0,0,0,,{{\\pos(540,800)\\p1}}m -450 -90 l 450 -90 b 467 -90 480 -77 480 -60 l 480 60 b 480 77 467 90 450 90 l -450 90 b -467 90 -480 77 -480 60 l -480 -60 b -480 -77 -467 -90 -450 -90{{\\p0}}\n"
+    ass_content += f"Dialogue: 2,0:00:00.00,{format_time(duration)},HeadlineText,,0,0,0,,{{\\pos(540,800)}}{headline_text}\n"
 
     # 3. Info Cards (sequential animation)
     # Collect non-empty details
