@@ -296,11 +296,10 @@ WrapStyle: 2
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: TopCardBg,Arial,10,&H00FFFFFF,&H00FFFFFF,&H00FFFFFF,&HFFFFFFFF,1,0,0,0,100,100,0,0,1,0,0,8,0,0,0,1
-Style: TopCard,Arial,36,&H00000000,&H00000000,&H00000000,&H00000000,1,0,0,0,100,100,0,0,1,0,0,8,0,0,0,1
+Style: TopCard,Arial,42,&H00000000,&H00000000,&H00FFFFFF,&HFFFFFFFF,1,0,0,0,100,100,0,0,3,15,0,8,60,60,120,1
 Style: Headline,Arial Black,42,&H00FFFFFF,&H00000000,&H00000000,&H00000000,1,0,0,0,100,100,0,0,3,8,0,8,60,60,700,1
 Style: InfoCard,Arial Black,44,&H00FFFFFF,&H00000000,&H00000000,&H00000000,1,0,0,0,100,100,0,0,3,12,0,5,60,60,0,1
-Style: BottomCTA,Arial Black,46,&H00000000,&H00000000,&H00FFFFFF,&HFFFFFFFF,1,0,0,0,100,100,0,0,3,12,0,2,60,60,180,1
+Style: BottomCTA,Arial Black,46,&H00000000,&H00000000,&H00FFFFFF,&HFFFFFFFF,1,0,0,0,100,100,0,0,3,12,0,2,60,60,300,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -315,25 +314,23 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
     # Build multi-line top card text
     top_card_lines = [
-        f"{{\\fs50\\c&H000000FF&\\b1}}{company.upper()}",
-        f"{{\\fs60\\c&H00000000&\\b1}}NOW HIRING",
-        f"{{\\fs44\\c&H00555555&\\b1}}{role.upper()}"
+        f"{{\\fs52\\c&H000000FF&\\b1}}{company.upper()}",
+        f"{{\\fs62\\c&H00000000&\\b1}}NOW HIRING",
+        f"{{\\fs46\\c&H00555555&\\b1}}{role.upper()}"
     ]
     
     if eligibility:
-        top_card_lines.append(f"{{\\fs36}}• Education: {eligibility}")
+        top_card_lines.append(f"{{\\fs38}}• Education: {eligibility}")
     if batch:
-        top_card_lines.append(f"{{\\fs36}}• Batch: {batch}")
+        top_card_lines.append(f"{{\\fs38}}• Batch: {batch}")
     if salary:
-        top_card_lines.append(f"{{\\fs36}}• CTC: {salary}")
+        top_card_lines.append(f"{{\\fs38}}• CTC: {salary}")
         
-    top_card_lines.append(f"{{\\fs38\\c&H000000FF&\\b1}}[ APPLY NOW ]")
-    top_card_lines.append(f"{{\\fs30\\c&H00AAAAAA&}}○   ○   ○")
+    top_card_lines.append(f"{{\\fs42\\c&H000000FF&\\b1}}[ APPLY NOW ]")
     top_card_text = "\\N".join(top_card_lines)
 
-    # 1. Top Card Background and Text dialogues (visible throughout the entire video)
-    ass_content += f"Dialogue: 0,0:00:00.00,{format_time(duration)},TopCardBg,,0,0,0,,{{\\pos(120,100)\\p1}}m 35 0 l 805 0 b 822 0 840 18 840 35 l 840 565 b 840 582 822 600 805 600 l 35 600 b 18 600 0 582 0 565 l 0 35 b 0 18 18 0 35 0{{\\p0}}\n"
-    ass_content += f"Dialogue: 1,0:00:00.00,{format_time(duration)},TopCard,,0,0,0,,{{\\pos(540,125)\\q2}}{top_card_text}\n"
+    # 1. Top Card dialogue (visible throughout the entire video)
+    ass_content += f"Dialogue: 0,0:00:00.00,{format_time(duration)},TopCard,,0,0,0,,{top_card_text}\n"
 
     # 2. Headline dialogue (visible throughout the entire video)
     headline_text = f"🚨 {company.upper()} is Hiring! 🚨\\N🔥 Off Campus Drive 2026 🔥"
